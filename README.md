@@ -1,4 +1,1 @@
-TestAjax
-========
-
-ZF2 module contain using Ajax in Zend\Form
+Sample, skeleton module for use with the ZF2 MVC layer.

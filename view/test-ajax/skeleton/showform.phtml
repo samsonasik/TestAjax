@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    var is_xmlhttprequest = <?php echo $this->is_xmlhttprequest; ?>;
+    var urlform           = '<?php echo $this->url('TestAjax/default', array('controller'=>'skeleton', 'action'=>'validatepostajax')); ?>';
+</script>
+
+<?php echo $this->headScript()->appendFile($this->basePath() . '/js/ajaxform-up.js'); ?>
+
+<?php
+$title = 'Add Test';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'TestAjax/default',
+    array(
+        'action'     => 'showform',
+        'controller' => 'skeleton'
+    )
+));
+$form->prepare();
+?>
+
+<?php echo $this->form()->openTag($form); ?>
+<div class="element element_name">
+    <?php echo $this->formRow($form->get('name')); ?>
+</div>
+<div class="element element_submit">
+    <?php echo $this->formRow($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>
+
+

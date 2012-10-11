@@ -33,7 +33,7 @@ class SkeletonController extends AbstractActionController
     }
     
     //save to db ...
-    public function savetodb($data)
+    protected function savetodb($data)
     {
         //common code save to save to db ....
     }

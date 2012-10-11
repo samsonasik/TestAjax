@@ -15,7 +15,7 @@ class TestEntity
      * @Annotation\Required({"required":"true" })
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringToUpper"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":"5"}})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":"30"}})
      * @Annotation\Options({"label":"Input Your Name:"})
      */
     public $name;

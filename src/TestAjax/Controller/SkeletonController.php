@@ -16,13 +16,11 @@ use TestAjax\Model\TestEntity;
 
 class SkeletonController extends AbstractActionController
 {
-    //the indexAction has link only, no code need in here...
     public function indexAction()
     {
         return array();
     }
     
-    // get a form
     protected function getForm()
     {
         $builder    = new AnnotationBuilder();
@@ -32,13 +30,11 @@ class SkeletonController extends AbstractActionController
         return $form;
     }
     
-    //save to db ...
-    protected function savetodb($data)
+    public function savetodb($data)
     {
-        //common code save to save to db ....
+        //code save to db ....
     }
     
-   //it call in dialog if request is XmlHttpRequest
     public function showformAction()
     {
         $viewmodel = new ViewModel();
@@ -46,13 +42,13 @@ class SkeletonController extends AbstractActionController
 
         $request = $this->getRequest();
         
+        //disable layout for ajax, because it's a modal dialog
+        $viewmodel->setTerminal($request->isXmlHttpRequest());
+        
         $is_xmlhttprequest = 1;
-        if ($request->isXmlHttpRequest()){
-            //disable layout for ajax, because it's a modal dialog
-            $viewmodel->setTerminal(true);
-        } else {
-            $is_xmlhttprequest = 0;
+        if ( ! $request->isXmlHttpRequest()){
             //if NOT using Ajax
+            $is_xmlhttprequest = 0;
             if ($request->isPost()){
                 $form->setData($request->getPost());
                 if ($form->isValid()){
@@ -64,13 +60,12 @@ class SkeletonController extends AbstractActionController
         
         $viewmodel->setVariables(array(
                     'form' => $form,
-                    'is_xmlhttprequest' => $is_xmlhttprequest //need for check this form is in modal dialog or not
+                    'is_xmlhttprequest' => $is_xmlhttprequest //need for check this form is in modal dialog or not in view
         ));
         
         return $viewmodel;
     }
     
-   //this is call if request is xmlHttpRequest
     public function validatepostajaxAction()
     {
         $form    = $this->getForm();
@@ -87,8 +82,6 @@ class SkeletonController extends AbstractActionController
                     if (!empty($row) && $key != 'submit') {
                         foreach($row as $keyer => $rower)
                         {
-                            //we need save errors per-element 
-                            //that will be consumed by Javascript
                             $messages[$key][] = $rower;    
                         }
                     }

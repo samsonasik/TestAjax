@@ -16,11 +16,13 @@ use TestAjax\Model\TestEntity;
 
 class SkeletonController extends AbstractActionController
 {
+    //the indexAction has link only, no code need in here...
     public function indexAction()
     {
         return array();
     }
     
+    // get a form
     protected function getForm()
     {
         $builder    = new AnnotationBuilder();
@@ -30,11 +32,13 @@ class SkeletonController extends AbstractActionController
         return $form;
     }
     
+    //save to db ...
     public function savetodb($data)
     {
-        //code save to db ....
+        //common code save to save to db ....
     }
     
+   //it call in dialog if request is XmlHttpRequest
     public function showformAction()
     {
         $viewmodel = new ViewModel();
@@ -66,6 +70,7 @@ class SkeletonController extends AbstractActionController
         return $viewmodel;
     }
     
+   //this is call if request is xmlHttpRequest
     public function validatepostajaxAction()
     {
         $form    = $this->getForm();
@@ -82,6 +87,8 @@ class SkeletonController extends AbstractActionController
                     if (!empty($row) && $key != 'submit') {
                         foreach($row as $keyer => $rower)
                         {
+                            //we need save errors per-element 
+                            //that will be consumed by Javascript
                             $messages[$key][] = $rower;    
                         }
                     }

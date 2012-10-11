@@ -52,6 +52,7 @@ return array(
     
    /*
     * if you're using AssetManager module, you can save assets in your module's public
+    * assetmanager module can be install by require "rwoverdijk/assetmanager": "*" in your composer.json
     * 'asset_manager' => array(
         'resolver_configs' => array(
             'paths' => array(

@@ -42,7 +42,7 @@ class SkeletonController extends AbstractActionController
 
         $request = $this->getRequest();
         
-        //disable layout for ajax, because it's a modal dialog
+        //disable layout if request by Ajax
         $viewmodel->setTerminal($request->isXmlHttpRequest());
         
         $is_xmlhttprequest = 1;
